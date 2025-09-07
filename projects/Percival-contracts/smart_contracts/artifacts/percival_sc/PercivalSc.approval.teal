@@ -1,0 +1,1442 @@
+#pragma version 10
+#pragma typetrack false
+
+// @algorandfoundation/algorand-typescript/arc4/index.d.ts::Contract.approvalProgram() -> uint64:
+main:
+    intcblock 0 1 125 160 320
+    bytecblock 0x00 0x151f7c75 "markets" 0x007d 0x0000000000000000 "bets" "nextMarketId" "nextBetId"
+    // smart_contracts/percival_sc/contract.algo.ts:54
+    // export class PercivalSc extends Contract {
+    txn NumAppArgs
+    bz main_bare_routing@12
+    pushbytess 0x64b5560a 0x9c389167 0x7e74e258 0xc6e03605 0x708e6ca5 0x9c791a4a 0x36412c97 // method "createMarket(string,string,uint64,uint64,account,uint64)uint64", method "placeBet(uint64,bool,uint64,pay)uint64", method "resolveMarket(uint64,uint64)bool", method "settleBet(uint64)bool", method "withdrawFees(uint64)bool", method "getMarket(uint64)(string,string,uint64,uint64,bool,uint64,address,address,uint64,uint64,uint64,uint64)", method "getBet(uint64)(uint64,address,bool,uint64,bool)"
+    txna ApplicationArgs 0
+    match main_createMarket_route@3 main_placeBet_route@4 main_resolveMarket_route@5 main_settleBet_route@6 main_withdrawFees_route@7 main_getMarket_route@8 main_getBet_route@9
+
+main_after_if_else@16:
+    // smart_contracts/percival_sc/contract.algo.ts:54
+    // export class PercivalSc extends Contract {
+    intc_0 // 0
+    return
+
+main_getBet_route@9:
+    // smart_contracts/percival_sc/contract.algo.ts:275
+    // @abimethod({ readonly: true })
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/percival_sc/contract.algo.ts:54
+    // export class PercivalSc extends Contract {
+    txna ApplicationArgs 1
+    btoi
+    // smart_contracts/percival_sc/contract.algo.ts:275
+    // @abimethod({ readonly: true })
+    callsub getBet
+    bytec_1 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+main_getMarket_route@8:
+    // smart_contracts/percival_sc/contract.algo.ts:266
+    // @abimethod({ readonly: true })
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/percival_sc/contract.algo.ts:54
+    // export class PercivalSc extends Contract {
+    txna ApplicationArgs 1
+    btoi
+    // smart_contracts/percival_sc/contract.algo.ts:266
+    // @abimethod({ readonly: true })
+    callsub getMarket
+    bytec_1 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+main_withdrawFees_route@7:
+    // smart_contracts/percival_sc/contract.algo.ts:246
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/percival_sc/contract.algo.ts:54
+    // export class PercivalSc extends Contract {
+    txna ApplicationArgs 1
+    btoi
+    // smart_contracts/percival_sc/contract.algo.ts:246
+    // @abimethod()
+    callsub withdrawFees
+    bytec_0 // 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    bytec_1 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+main_settleBet_route@6:
+    // smart_contracts/percival_sc/contract.algo.ts:183
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/percival_sc/contract.algo.ts:54
+    // export class PercivalSc extends Contract {
+    txna ApplicationArgs 1
+    btoi
+    // smart_contracts/percival_sc/contract.algo.ts:183
+    // @abimethod()
+    callsub settleBet
+    bytec_0 // 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    bytec_1 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+main_resolveMarket_route@5:
+    // smart_contracts/percival_sc/contract.algo.ts:160
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/percival_sc/contract.algo.ts:54
+    // export class PercivalSc extends Contract {
+    txna ApplicationArgs 1
+    btoi
+    txna ApplicationArgs 2
+    btoi
+    // smart_contracts/percival_sc/contract.algo.ts:160
+    // @abimethod()
+    callsub resolveMarket
+    bytec_0 // 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    bytec_1 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+main_placeBet_route@4:
+    // smart_contracts/percival_sc/contract.algo.ts:111
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/percival_sc/contract.algo.ts:54
+    // export class PercivalSc extends Contract {
+    txna ApplicationArgs 1
+    btoi
+    txna ApplicationArgs 2
+    intc_0 // 0
+    getbit
+    txna ApplicationArgs 3
+    btoi
+    txn GroupIndex
+    intc_1 // 1
+    -
+    dup
+    gtxns TypeEnum
+    intc_1 // pay
+    ==
+    assert // transaction type is pay
+    // smart_contracts/percival_sc/contract.algo.ts:111
+    // @abimethod()
+    callsub placeBet
+    itob
+    bytec_1 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+main_createMarket_route@3:
+    // smart_contracts/percival_sc/contract.algo.ts:74
+    // @abimethod()
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/percival_sc/contract.algo.ts:54
+    // export class PercivalSc extends Contract {
+    txna ApplicationArgs 1
+    extract 2 0
+    txna ApplicationArgs 2
+    extract 2 0
+    txna ApplicationArgs 3
+    btoi
+    txna ApplicationArgs 4
+    btoi
+    txna ApplicationArgs 5
+    btoi
+    txnas Accounts
+    txna ApplicationArgs 6
+    btoi
+    // smart_contracts/percival_sc/contract.algo.ts:74
+    // @abimethod()
+    callsub createMarket
+    itob
+    bytec_1 // 0x151f7c75
+    swap
+    concat
+    log
+    intc_1 // 1
+    return
+
+main_bare_routing@12:
+    // smart_contracts/percival_sc/contract.algo.ts:54
+    // export class PercivalSc extends Contract {
+    txn OnCompletion
+    bnz main_after_if_else@16
+    txn ApplicationID
+    !
+    assert // can only call when creating
+    intc_1 // 1
+    return
+
+
+// smart_contracts/percival_sc/contract.algo.ts::PercivalSc.createMarket(platform: bytes, contentId: bytes, targetCount: uint64, deadline: uint64, oracle: bytes, feeBps: uint64) -> uint64:
+createMarket:
+    // smart_contracts/percival_sc/contract.algo.ts:74-75
+    // @abimethod()
+    // public createMarket(platform: string, contentId: string, targetCount: uint64, deadline: uint64, oracle: Account, feeBps: uint64): uint64 {
+    proto 6 1
+    // smart_contracts/percival_sc/contract.algo.ts:77
+    // assert(feeBps <= 1000, "fee too high"); // cap at 10%
+    frame_dig -1
+    pushint 1000 // 1000
+    <=
+    assert // fee too high
+    // smart_contracts/percival_sc/contract.algo.ts:78
+    // assert(deadline > Global.latestTimestamp, "deadline in past");
+    frame_dig -3
+    global LatestTimestamp
+    >
+    assert // deadline in past
+    // smart_contracts/percival_sc/contract.algo.ts:56
+    // public nextMarketId = GlobalState<uint64>({ key: "nextMarketId" });
+    intc_0 // 0
+    bytec 6 // "nextMarketId"
+    app_global_get_ex
+    assert // check GlobalState exists
+    // smart_contracts/percival_sc/contract.algo.ts:83
+    // platform: new arc4.Str(platform),
+    frame_dig -6
+    len
+    itob
+    extract 6 2
+    frame_dig -6
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:84
+    // contentId: new arc4.Str(contentId),
+    frame_dig -5
+    len
+    itob
+    extract 6 2
+    frame_dig -5
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:85
+    // targetCount: new arc4.UintN64(targetCount),
+    frame_dig -4
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:86
+    // deadline: new arc4.UintN64(deadline),
+    frame_dig -3
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:89
+    // creator: new arc4.Address(Txn.sender),
+    txn Sender
+    // smart_contracts/percival_sc/contract.algo.ts:91
+    // feeBps: new arc4.UintN64(feeBps),
+    frame_dig -1
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:82-95
+    // const m = new MarketStruct({
+    //   platform: new arc4.Str(platform),
+    //   contentId: new arc4.Str(contentId),
+    //   targetCount: new arc4.UintN64(targetCount),
+    //   deadline: new arc4.UintN64(deadline),
+    //   resolved: new arc4.Bool(false),
+    //   finalCount: new arc4.UintN64(0),
+    //   creator: new arc4.Address(Txn.sender),
+    //   oracle: new arc4.Address(oracle),
+    //   feeBps: new arc4.UintN64(feeBps),
+    //   totalYesStake: new arc4.UintN64(0),
+    //   totalNoStake: new arc4.UintN64(0),
+    //   collectedFees: new arc4.UintN64(0),
+    // });
+    dig 5
+    len
+    intc_2 // 125
+    +
+    itob
+    extract 6 2
+    bytec_3 // 0x007d
+    swap
+    concat
+    uncover 4
+    concat
+    uncover 3
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:87
+    // resolved: new arc4.Bool(false),
+    bytec_0 // 0x00
+    // smart_contracts/percival_sc/contract.algo.ts:82-95
+    // const m = new MarketStruct({
+    //   platform: new arc4.Str(platform),
+    //   contentId: new arc4.Str(contentId),
+    //   targetCount: new arc4.UintN64(targetCount),
+    //   deadline: new arc4.UintN64(deadline),
+    //   resolved: new arc4.Bool(false),
+    //   finalCount: new arc4.UintN64(0),
+    //   creator: new arc4.Address(Txn.sender),
+    //   oracle: new arc4.Address(oracle),
+    //   feeBps: new arc4.UintN64(feeBps),
+    //   totalYesStake: new arc4.UintN64(0),
+    //   totalNoStake: new arc4.UintN64(0),
+    //   collectedFees: new arc4.UintN64(0),
+    // });
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:88
+    // finalCount: new arc4.UintN64(0),
+    bytec 4 // 0x0000000000000000
+    // smart_contracts/percival_sc/contract.algo.ts:82-95
+    // const m = new MarketStruct({
+    //   platform: new arc4.Str(platform),
+    //   contentId: new arc4.Str(contentId),
+    //   targetCount: new arc4.UintN64(targetCount),
+    //   deadline: new arc4.UintN64(deadline),
+    //   resolved: new arc4.Bool(false),
+    //   finalCount: new arc4.UintN64(0),
+    //   creator: new arc4.Address(Txn.sender),
+    //   oracle: new arc4.Address(oracle),
+    //   feeBps: new arc4.UintN64(feeBps),
+    //   totalYesStake: new arc4.UintN64(0),
+    //   totalNoStake: new arc4.UintN64(0),
+    //   collectedFees: new arc4.UintN64(0),
+    // });
+    concat
+    uncover 2
+    concat
+    frame_dig -2
+    concat
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:92
+    // totalYesStake: new arc4.UintN64(0),
+    bytec 4 // 0x0000000000000000
+    // smart_contracts/percival_sc/contract.algo.ts:82-95
+    // const m = new MarketStruct({
+    //   platform: new arc4.Str(platform),
+    //   contentId: new arc4.Str(contentId),
+    //   targetCount: new arc4.UintN64(targetCount),
+    //   deadline: new arc4.UintN64(deadline),
+    //   resolved: new arc4.Bool(false),
+    //   finalCount: new arc4.UintN64(0),
+    //   creator: new arc4.Address(Txn.sender),
+    //   oracle: new arc4.Address(oracle),
+    //   feeBps: new arc4.UintN64(feeBps),
+    //   totalYesStake: new arc4.UintN64(0),
+    //   totalNoStake: new arc4.UintN64(0),
+    //   collectedFees: new arc4.UintN64(0),
+    // });
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:93
+    // totalNoStake: new arc4.UintN64(0),
+    bytec 4 // 0x0000000000000000
+    // smart_contracts/percival_sc/contract.algo.ts:82-95
+    // const m = new MarketStruct({
+    //   platform: new arc4.Str(platform),
+    //   contentId: new arc4.Str(contentId),
+    //   targetCount: new arc4.UintN64(targetCount),
+    //   deadline: new arc4.UintN64(deadline),
+    //   resolved: new arc4.Bool(false),
+    //   finalCount: new arc4.UintN64(0),
+    //   creator: new arc4.Address(Txn.sender),
+    //   oracle: new arc4.Address(oracle),
+    //   feeBps: new arc4.UintN64(feeBps),
+    //   totalYesStake: new arc4.UintN64(0),
+    //   totalNoStake: new arc4.UintN64(0),
+    //   collectedFees: new arc4.UintN64(0),
+    // });
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:94
+    // collectedFees: new arc4.UintN64(0),
+    bytec 4 // 0x0000000000000000
+    // smart_contracts/percival_sc/contract.algo.ts:82-95
+    // const m = new MarketStruct({
+    //   platform: new arc4.Str(platform),
+    //   contentId: new arc4.Str(contentId),
+    //   targetCount: new arc4.UintN64(targetCount),
+    //   deadline: new arc4.UintN64(deadline),
+    //   resolved: new arc4.Bool(false),
+    //   finalCount: new arc4.UintN64(0),
+    //   creator: new arc4.Address(Txn.sender),
+    //   oracle: new arc4.Address(oracle),
+    //   feeBps: new arc4.UintN64(feeBps),
+    //   totalYesStake: new arc4.UintN64(0),
+    //   totalNoStake: new arc4.UintN64(0),
+    //   collectedFees: new arc4.UintN64(0),
+    // });
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:97
+    // this.markets(id).value = m.copy();
+    dig 1
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:60
+    // public markets = BoxMap<uint64, MarketStruct>({ keyPrefix: "markets" });
+    bytec_2 // "markets"
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:97
+    // this.markets(id).value = m.copy();
+    dup
+    box_del
+    pop
+    swap
+    box_put
+    // smart_contracts/percival_sc/contract.algo.ts:98
+    // this.nextMarketId.value = id + 1;
+    dup
+    intc_1 // 1
+    +
+    // smart_contracts/percival_sc/contract.algo.ts:56
+    // public nextMarketId = GlobalState<uint64>({ key: "nextMarketId" });
+    bytec 6 // "nextMarketId"
+    // smart_contracts/percival_sc/contract.algo.ts:98
+    // this.nextMarketId.value = id + 1;
+    swap
+    app_global_put
+    // smart_contracts/percival_sc/contract.algo.ts:99
+    // return id;
+    retsub
+
+
+// smart_contracts/percival_sc/contract.algo.ts::PercivalSc.placeBet(marketId: uint64, sideYes: uint64, amount: uint64, payment: uint64) -> uint64:
+placeBet:
+    // smart_contracts/percival_sc/contract.algo.ts:111-112
+    // @abimethod()
+    // public placeBet(marketId: uint64, sideYes: boolean, amount: uint64, payment: gtxn.PaymentTxn): uint64 {
+    proto 4 1
+    // smart_contracts/percival_sc/contract.algo.ts:113
+    // assert(this.markets(marketId).exists, "market not found");
+    frame_dig -4
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:60
+    // public markets = BoxMap<uint64, MarketStruct>({ keyPrefix: "markets" });
+    bytec_2 // "markets"
+    dig 1
+    concat
+    dup
+    cover 2
+    // smart_contracts/percival_sc/contract.algo.ts:113
+    // assert(this.markets(marketId).exists, "market not found");
+    dup
+    box_len
+    bury 1
+    assert // market not found
+    // smart_contracts/percival_sc/contract.algo.ts:114
+    // const m = this.markets(marketId).value.copy();
+    box_get
+    swap
+    dup
+    cover 2
+    cover 3
+    assert // Box must have value
+    // smart_contracts/percival_sc/contract.algo.ts:117
+    // assert(!m.resolved.native, "market resolved");
+    dup
+    intc_3 // 160
+    getbit
+    bytec_0 // 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    dup
+    cover 3
+    intc_0 // 0
+    getbit
+    !
+    assert // market resolved
+    // smart_contracts/percival_sc/contract.algo.ts:118
+    // assert(Global.latestTimestamp <= m.deadline.native, "betting closed");
+    global LatestTimestamp
+    dig 1
+    extract 12 8 // on error: Index access is out of bounds
+    cover 3
+    dig 1
+    pushint 12 // 12
+    extract_uint64
+    <=
+    assert // betting closed
+    // smart_contracts/percival_sc/contract.algo.ts:121
+    // assert(amount > 0, "amount=0");
+    frame_dig -2
+    assert // amount=0
+    // smart_contracts/percival_sc/contract.algo.ts:122
+    // assert(payment.amount === amount, "bad amount");
+    frame_dig -1
+    gtxns Amount
+    frame_dig -2
+    ==
+    assert // bad amount
+    // smart_contracts/percival_sc/contract.algo.ts:123
+    // assert(payment.receiver === Global.currentApplicationAddress, "bad receiver");
+    frame_dig -1
+    gtxns Receiver
+    global CurrentApplicationAddress
+    ==
+    assert // bad receiver
+    // smart_contracts/percival_sc/contract.algo.ts:124
+    // assert(payment.sender === Txn.sender, "bad sender");
+    frame_dig -1
+    gtxns Sender
+    txn Sender
+    ==
+    assert // bad sender
+    // smart_contracts/percival_sc/contract.algo.ts:57
+    // public nextBetId = GlobalState<uint64>({ key: "nextBetId" });
+    intc_0 // 0
+    bytec 7 // "nextBetId"
+    app_global_get_ex
+    swap
+    dup
+    cover 2
+    cover 4
+    assert // check GlobalState exists
+    // smart_contracts/percival_sc/contract.algo.ts:130
+    // bettor: new arc4.Address(Txn.sender),
+    txn Sender
+    // smart_contracts/percival_sc/contract.algo.ts:131
+    // sideYes: new arc4.Bool(sideYes),
+    bytec_0 // 0x00
+    intc_0 // 0
+    frame_dig -3
+    setbit
+    // smart_contracts/percival_sc/contract.algo.ts:132
+    // amount: new arc4.UintN64(amount),
+    frame_dig -2
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:128-134
+    // const b = new BetStruct({
+    //   marketId: new arc4.UintN64(marketId),
+    //   bettor: new arc4.Address(Txn.sender),
+    //   sideYes: new arc4.Bool(sideYes),
+    //   amount: new arc4.UintN64(amount),
+    //   settled: new arc4.Bool(false),
+    // });
+    uncover 5
+    uncover 3
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:133
+    // settled: new arc4.Bool(false),
+    bytec_0 // 0x00
+    // smart_contracts/percival_sc/contract.algo.ts:128-134
+    // const b = new BetStruct({
+    //   marketId: new arc4.UintN64(marketId),
+    //   bettor: new arc4.Address(Txn.sender),
+    //   sideYes: new arc4.Bool(sideYes),
+    //   amount: new arc4.UintN64(amount),
+    //   settled: new arc4.Bool(false),
+    // });
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:135
+    // this.bets(betId).value = b.copy();
+    dig 1
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:61
+    // public bets = BoxMap<uint64, BetStruct>({ keyPrefix: "bets" });
+    bytec 5 // "bets"
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:135
+    // this.bets(betId).value = b.copy();
+    swap
+    box_put
+    // smart_contracts/percival_sc/contract.algo.ts:136
+    // this.nextBetId.value = betId + 1;
+    intc_1 // 1
+    +
+    // smart_contracts/percival_sc/contract.algo.ts:57
+    // public nextBetId = GlobalState<uint64>({ key: "nextBetId" });
+    bytec 7 // "nextBetId"
+    // smart_contracts/percival_sc/contract.algo.ts:136
+    // this.nextBetId.value = betId + 1;
+    swap
+    app_global_put
+    // smart_contracts/percival_sc/contract.algo.ts:139
+    // let newYes: uint64 = m.totalYesStake.native;
+    dup
+    pushint 101 // 101
+    extract_uint64
+    swap
+    // smart_contracts/percival_sc/contract.algo.ts:140
+    // let newNo: uint64 = m.totalNoStake.native;
+    pushint 109 // 109
+    extract_uint64
+    // smart_contracts/percival_sc/contract.algo.ts:141
+    // if (sideYes) {
+    frame_dig -3
+    bz placeBet_else_body@2
+    // smart_contracts/percival_sc/contract.algo.ts:142
+    // newYes = newYes + amount;
+    frame_dig 5
+    frame_dig -2
+    +
+    frame_bury 5
+
+placeBet_after_if_else@3:
+    // smart_contracts/percival_sc/contract.algo.ts:148
+    // totalYesStake: new arc4.UintN64(newYes),
+    frame_dig 5
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:149
+    // totalNoStake: new arc4.UintN64(newNo),
+    frame_dig 6
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:146-150
+    // const updated = new MarketStruct({
+    //   ...m,
+    //   totalYesStake: new arc4.UintN64(newYes),
+    //   totalNoStake: new arc4.UintN64(newNo),
+    // });
+    frame_dig 1
+    dup
+    intc_0 // 0
+    extract_uint16
+    dig 1
+    pushint 2 // 2
+    extract_uint16
+    dig 2
+    uncover 2
+    dig 2
+    substring3
+    dig 2
+    len
+    dig 3
+    uncover 3
+    uncover 2
+    substring3
+    dig 2
+    extract 4 8 // on error: Index access is out of bounds
+    dig 3
+    extract 21 8 // on error: Index access is out of bounds
+    dig 4
+    extract 29 32 // on error: Index access is out of bounds
+    dig 5
+    extract 61 32 // on error: Index access is out of bounds
+    dig 6
+    extract 93 8 // on error: Index access is out of bounds
+    uncover 7
+    extract 117 8 // on error: Index access is out of bounds
+    dig 7
+    len
+    intc_2 // 125
+    +
+    itob
+    extract 6 2
+    bytec_3 // 0x007d
+    swap
+    concat
+    uncover 6
+    concat
+    frame_dig 3
+    concat
+    frame_dig 2
+    concat
+    uncover 5
+    concat
+    uncover 4
+    concat
+    uncover 3
+    concat
+    uncover 2
+    concat
+    uncover 5
+    concat
+    uncover 4
+    concat
+    swap
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:151
+    // this.markets(marketId).value = updated.copy();
+    frame_dig 0
+    dup
+    box_del
+    pop
+    swap
+    box_put
+    // smart_contracts/percival_sc/contract.algo.ts:153
+    // return betId;
+    frame_dig 4
+    frame_bury 0
+    retsub
+
+placeBet_else_body@2:
+    // smart_contracts/percival_sc/contract.algo.ts:144
+    // newNo = newNo + amount;
+    frame_dig 6
+    frame_dig -2
+    +
+    frame_bury 6
+    b placeBet_after_if_else@3
+
+
+// smart_contracts/percival_sc/contract.algo.ts::PercivalSc.resolveMarket(marketId: uint64, finalCount: uint64) -> uint64:
+resolveMarket:
+    // smart_contracts/percival_sc/contract.algo.ts:160-161
+    // @abimethod()
+    // public resolveMarket(marketId: uint64, finalCount: uint64): boolean {
+    proto 2 1
+    // smart_contracts/percival_sc/contract.algo.ts:162
+    // assert(this.markets(marketId).exists, "market not found");
+    frame_dig -2
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:60
+    // public markets = BoxMap<uint64, MarketStruct>({ keyPrefix: "markets" });
+    bytec_2 // "markets"
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:162
+    // assert(this.markets(marketId).exists, "market not found");
+    dup
+    box_len
+    bury 1
+    assert // market not found
+    // smart_contracts/percival_sc/contract.algo.ts:163
+    // const m = this.markets(marketId).value.copy();
+    dup
+    box_get
+    assert // Box must have value
+    // smart_contracts/percival_sc/contract.algo.ts:165
+    // assert(Global.latestTimestamp >= m.deadline.native, "too early");
+    global LatestTimestamp
+    dig 1
+    extract 12 8 // on error: Index access is out of bounds
+    dig 2
+    pushint 12 // 12
+    extract_uint64
+    uncover 2
+    <=
+    assert // too early
+    // smart_contracts/percival_sc/contract.algo.ts:166
+    // assert(!m.resolved.native, "already resolved");
+    dig 1
+    intc_3 // 160
+    getbit
+    bytec_0 // 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    intc_0 // 0
+    getbit
+    !
+    assert // already resolved
+    // smart_contracts/percival_sc/contract.algo.ts:167
+    // assert(new arc4.Address(Txn.sender).bytes === m.oracle.bytes, "not oracle");
+    txn Sender
+    dig 2
+    extract 61 32 // on error: Index access is out of bounds
+    swap
+    dig 1
+    ==
+    assert // not oracle
+    // smart_contracts/percival_sc/contract.algo.ts:172
+    // finalCount: new arc4.UintN64(finalCount),
+    frame_dig -1
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:169-173
+    // const updated = new MarketStruct({
+    //   ...m,
+    //   resolved: new arc4.Bool(true),
+    //   finalCount: new arc4.UintN64(finalCount),
+    // });
+    dig 3
+    intc_0 // 0
+    extract_uint16
+    dig 4
+    pushint 2 // 2
+    extract_uint16
+    dig 5
+    uncover 2
+    dig 2
+    substring3
+    dig 5
+    len
+    dig 6
+    uncover 3
+    uncover 2
+    substring3
+    dig 5
+    extract 4 8 // on error: Index access is out of bounds
+    dig 6
+    extract 29 32 // on error: Index access is out of bounds
+    dig 7
+    extract 93 8 // on error: Index access is out of bounds
+    dig 8
+    extract 101 8 // on error: Index access is out of bounds
+    dig 9
+    extract 109 8 // on error: Index access is out of bounds
+    uncover 10
+    extract 117 8 // on error: Index access is out of bounds
+    dig 7
+    len
+    intc_2 // 125
+    +
+    itob
+    extract 6 2
+    bytec_3 // 0x007d
+    swap
+    concat
+    uncover 6
+    concat
+    uncover 10
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:171
+    // resolved: new arc4.Bool(true),
+    pushbytes 0x80
+    // smart_contracts/percival_sc/contract.algo.ts:169-173
+    // const updated = new MarketStruct({
+    //   ...m,
+    //   resolved: new arc4.Bool(true),
+    //   finalCount: new arc4.UintN64(finalCount),
+    // });
+    concat
+    uncover 8
+    concat
+    uncover 5
+    concat
+    uncover 7
+    concat
+    uncover 4
+    concat
+    uncover 3
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:174
+    // this.markets(marketId).value = updated.copy();
+    dig 1
+    box_del
+    pop
+    box_put
+    // smart_contracts/percival_sc/contract.algo.ts:175
+    // return true;
+    intc_1 // 1
+    retsub
+
+
+// smart_contracts/percival_sc/contract.algo.ts::PercivalSc.settleBet(betId: uint64) -> uint64:
+settleBet:
+    // smart_contracts/percival_sc/contract.algo.ts:183-184
+    // @abimethod()
+    // public settleBet(betId: uint64): boolean {
+    proto 1 1
+    pushbytes ""
+    dup
+    // smart_contracts/percival_sc/contract.algo.ts:185
+    // assert(this.bets(betId).exists, "bet not found");
+    frame_dig -1
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:61
+    // public bets = BoxMap<uint64, BetStruct>({ keyPrefix: "bets" });
+    bytec 5 // "bets"
+    swap
+    concat
+    dupn 2
+    // smart_contracts/percival_sc/contract.algo.ts:185
+    // assert(this.bets(betId).exists, "bet not found");
+    box_len
+    bury 1
+    assert // bet not found
+    // smart_contracts/percival_sc/contract.algo.ts:186
+    // const b = this.bets(betId).value.copy();
+    box_get
+    swap
+    dup
+    uncover 2
+    assert // Box must have value
+    // smart_contracts/percival_sc/contract.algo.ts:187
+    // assert(!b.settled.native, "already settled");
+    dup
+    pushint 392 // 392
+    getbit
+    bytec_0 // 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    intc_0 // 0
+    getbit
+    !
+    assert // already settled
+    // smart_contracts/percival_sc/contract.algo.ts:189
+    // const m = this.markets(b.marketId.native).value.copy();
+    dup
+    extract 0 8 // on error: Index access is out of bounds
+    swap
+    intc_0 // 0
+    extract_uint64
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:60
+    // public markets = BoxMap<uint64, MarketStruct>({ keyPrefix: "markets" });
+    bytec_2 // "markets"
+    swap
+    concat
+    dup
+    // smart_contracts/percival_sc/contract.algo.ts:189
+    // const m = this.markets(b.marketId.native).value.copy();
+    box_get
+    swap
+    dup
+    uncover 2
+    assert // Box must have value
+    // smart_contracts/percival_sc/contract.algo.ts:190
+    // assert(m.resolved.native, "not resolved");
+    dup
+    intc_3 // 160
+    getbit
+    bytec_0 // 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    dup
+    cover 2
+    intc_0 // 0
+    getbit
+    assert // not resolved
+    // smart_contracts/percival_sc/contract.algo.ts:192
+    // const yesWins = m.finalCount.native >= m.targetCount.native;
+    dup
+    extract 21 8 // on error: Index access is out of bounds
+    swap
+    dup
+    pushint 21 // 21
+    extract_uint64
+    dig 1
+    extract 4 8 // on error: Index access is out of bounds
+    cover 2
+    dig 1
+    pushint 4 // 4
+    extract_uint64
+    >=
+    dup
+    uncover 2
+    // smart_contracts/percival_sc/contract.algo.ts:193
+    // const totalYes: uint64 = m.totalYesStake.native;
+    dup
+    extract 101 8 // on error: Index access is out of bounds
+    cover 2
+    dup
+    pushint 101 // 101
+    extract_uint64
+    cover 2
+    // smart_contracts/percival_sc/contract.algo.ts:194
+    // const totalNo: uint64 = m.totalNoStake.native;
+    dup
+    extract 109 8 // on error: Index access is out of bounds
+    cover 2
+    pushint 109 // 109
+    extract_uint64
+    swap
+    // smart_contracts/percival_sc/contract.algo.ts:197
+    // if ((yesWins && b.sideYes.native) || (!yesWins && !b.sideYes.native)) {
+    bz settleBet_or_contd@2
+    frame_dig 3
+    intc 4 // 320
+    getbit
+    bytec_0 // 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    intc_0 // 0
+    getbit
+    bnz settleBet_if_body@4
+
+settleBet_or_contd@2:
+    // smart_contracts/percival_sc/contract.algo.ts:197
+    // if ((yesWins && b.sideYes.native) || (!yesWins && !b.sideYes.native)) {
+    frame_dig 10
+    bnz settleBet_after_if_else@13
+    frame_dig 3
+    intc 4 // 320
+    getbit
+    bytec_0 // 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    intc_0 // 0
+    getbit
+    bnz settleBet_after_if_else@13
+
+settleBet_if_body@4:
+    // smart_contracts/percival_sc/contract.algo.ts:199
+    // const winnersPool: uint64 = yesWins ? totalYes : totalNo;
+    frame_dig 14
+    dup
+    frame_dig 12
+    dup
+    cover 2
+    frame_dig 10
+    dup
+    cover 4
+    select
+    dup
+    cover 4
+    frame_bury 1
+    // smart_contracts/percival_sc/contract.algo.ts:200
+    // const losersPool: uint64 = yesWins ? totalNo : totalYes;
+    cover 2
+    select
+    frame_bury 0
+    // smart_contracts/percival_sc/contract.algo.ts:202
+    // if (winnersPool === (0 as uint64)) {
+    bnz settleBet_else_body@6
+    // smart_contracts/percival_sc/contract.algo.ts:204
+    // payout = b.amount.native as uint64;
+    frame_dig 3
+    pushint 41 // 41
+    extract_uint64
+
+settleBet_after_if_else@10:
+    // smart_contracts/percival_sc/contract.algo.ts:226-232
+    // itxn
+    //   .payment({
+    //     amount: payout,
+    //     receiver: b.bettor.bytes,
+    //     fee: 0,
+    //   })
+    //   .submit();
+    itxn_begin
+    // smart_contracts/percival_sc/contract.algo.ts:229
+    // receiver: b.bettor.bytes,
+    frame_dig 3
+    extract 8 32 // on error: Index access is out of bounds
+    itxn_field Receiver
+    itxn_field Amount
+    // smart_contracts/percival_sc/contract.algo.ts:226-231
+    // itxn
+    //   .payment({
+    //     amount: payout,
+    //     receiver: b.bettor.bytes,
+    //     fee: 0,
+    //   })
+    intc_1 // 1
+    itxn_field TypeEnum
+    // smart_contracts/percival_sc/contract.algo.ts:230
+    // fee: 0,
+    intc_0 // 0
+    itxn_field Fee
+    // smart_contracts/percival_sc/contract.algo.ts:226-232
+    // itxn
+    //   .payment({
+    //     amount: payout,
+    //     receiver: b.bettor.bytes,
+    //     fee: 0,
+    //   })
+    //   .submit();
+    itxn_submit
+
+settleBet_after_if_else@13:
+    // smart_contracts/percival_sc/contract.algo.ts:238
+    // const updatedB = new BetStruct({ ...b, settled: new arc4.Bool(true) });
+    frame_dig 3
+    dup
+    extract 8 32 // on error: Index access is out of bounds
+    dig 1
+    intc 4 // 320
+    getbit
+    bytec_0 // 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    uncover 2
+    extract 41 8 // on error: Index access is out of bounds
+    frame_dig 4
+    uncover 3
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    pushbytes 0x80
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:239
+    // this.bets(betId).value = updatedB.copy();
+    frame_dig 2
+    swap
+    box_put
+    // smart_contracts/percival_sc/contract.algo.ts:240
+    // return true;
+    intc_1 // 1
+    frame_bury 0
+    retsub
+
+settleBet_else_body@6:
+    // smart_contracts/percival_sc/contract.algo.ts:205
+    // } else if (losersPool === (0 as uint64)) {
+    frame_dig 0
+    bnz settleBet_else_body@8
+    // smart_contracts/percival_sc/contract.algo.ts:207
+    // payout = b.amount.native as uint64;
+    frame_dig 3
+    pushint 41 // 41
+    extract_uint64
+    b settleBet_after_if_else@10
+
+settleBet_else_body@8:
+    // smart_contracts/percival_sc/contract.algo.ts:210
+    // const profit: uint64 = ((b.amount.native * losersPool) / winnersPool) as uint64;
+    frame_dig 3
+    pushint 41 // 41
+    extract_uint64
+    dup
+    frame_dig 0
+    *
+    frame_dig 1
+    /
+    // smart_contracts/percival_sc/contract.algo.ts:213
+    // const fee: uint64 = ((profit * m.feeBps.native) / TEN_K) as uint64;
+    frame_dig 6
+    dup
+    extract 93 8 // on error: Index access is out of bounds
+    dig 1
+    pushint 93 // 93
+    extract_uint64
+    dig 3
+    *
+    // smart_contracts/percival_sc/contract.algo.ts:212
+    // const TEN_K: uint64 = 10000 as uint64;
+    pushint 10000 // 10000
+    // smart_contracts/percival_sc/contract.algo.ts:213
+    // const fee: uint64 = ((profit * m.feeBps.native) / TEN_K) as uint64;
+    /
+    // smart_contracts/percival_sc/contract.algo.ts:214
+    // payout = (b.amount.native + (profit - fee)) as uint64;
+    uncover 3
+    dig 1
+    -
+    uncover 4
+    +
+    cover 3
+    // smart_contracts/percival_sc/contract.algo.ts:217
+    // const newCollected: uint64 = (m.collectedFees.native + fee) as uint64;
+    dig 2
+    pushint 117 // 117
+    extract_uint64
+    +
+    // smart_contracts/percival_sc/contract.algo.ts:220
+    // collectedFees: new arc4.UintN64(newCollected),
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:218-221
+    // const updatedM1 = new MarketStruct({
+    //   ...m,
+    //   collectedFees: new arc4.UintN64(newCollected),
+    // });
+    dig 2
+    intc_0 // 0
+    extract_uint16
+    dig 3
+    pushint 2 // 2
+    extract_uint16
+    dig 4
+    uncover 2
+    dig 2
+    substring3
+    dig 4
+    len
+    dig 5
+    uncover 3
+    uncover 2
+    substring3
+    dig 4
+    extract 12 8 // on error: Index access is out of bounds
+    dig 5
+    extract 29 32 // on error: Index access is out of bounds
+    uncover 6
+    extract 61 32 // on error: Index access is out of bounds
+    dig 4
+    len
+    intc_2 // 125
+    +
+    itob
+    extract 6 2
+    bytec_3 // 0x007d
+    swap
+    concat
+    frame_dig 9
+    concat
+    uncover 3
+    concat
+    frame_dig 7
+    concat
+    frame_dig 8
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    uncover 4
+    concat
+    frame_dig 11
+    concat
+    frame_dig 13
+    concat
+    uncover 3
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:222
+    // this.markets(b.marketId.native).value = updatedM1.copy();
+    frame_dig 5
+    dup
+    box_del
+    pop
+    swap
+    box_put
+    b settleBet_after_if_else@10
+
+
+// smart_contracts/percival_sc/contract.algo.ts::PercivalSc.withdrawFees(marketId: uint64) -> uint64:
+withdrawFees:
+    // smart_contracts/percival_sc/contract.algo.ts:246-247
+    // @abimethod()
+    // public withdrawFees(marketId: uint64): boolean {
+    proto 1 1
+    // smart_contracts/percival_sc/contract.algo.ts:248
+    // assert(this.markets(marketId).exists, "market not found");
+    frame_dig -1
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:60
+    // public markets = BoxMap<uint64, MarketStruct>({ keyPrefix: "markets" });
+    bytec_2 // "markets"
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:248
+    // assert(this.markets(marketId).exists, "market not found");
+    dup
+    box_len
+    bury 1
+    assert // market not found
+    // smart_contracts/percival_sc/contract.algo.ts:249
+    // const m = this.markets(marketId).value.copy();
+    dup
+    box_get
+    assert // Box must have value
+    // smart_contracts/percival_sc/contract.algo.ts:251
+    // assert(new arc4.Address(Txn.sender).bytes === m.creator.bytes, "not creator");
+    txn Sender
+    dig 1
+    extract 29 32 // on error: Index access is out of bounds
+    swap
+    dig 1
+    ==
+    assert // not creator
+    // smart_contracts/percival_sc/contract.algo.ts:252
+    // const amt = m.collectedFees.native;
+    dig 1
+    pushint 117 // 117
+    extract_uint64
+    // smart_contracts/percival_sc/contract.algo.ts:253
+    // assert(amt > 0, "nothing to withdraw");
+    dup
+    assert // nothing to withdraw
+    // smart_contracts/percival_sc/contract.algo.ts:256
+    // const updated = new MarketStruct({ ...m, collectedFees: new arc4.UintN64(0) });
+    dig 2
+    intc_0 // 0
+    extract_uint16
+    dig 3
+    pushint 2 // 2
+    extract_uint16
+    dig 4
+    uncover 2
+    dig 2
+    substring3
+    dig 4
+    len
+    dig 5
+    uncover 3
+    uncover 2
+    substring3
+    dig 4
+    extract 4 8 // on error: Index access is out of bounds
+    dig 5
+    extract 12 8 // on error: Index access is out of bounds
+    dig 6
+    intc_3 // 160
+    getbit
+    bytec_0 // 0x00
+    intc_0 // 0
+    uncover 2
+    setbit
+    dig 7
+    extract 21 8 // on error: Index access is out of bounds
+    dig 8
+    extract 61 32 // on error: Index access is out of bounds
+    dig 9
+    extract 93 8 // on error: Index access is out of bounds
+    dig 10
+    extract 101 8 // on error: Index access is out of bounds
+    uncover 11
+    extract 109 8 // on error: Index access is out of bounds
+    dig 9
+    len
+    intc_2 // 125
+    +
+    itob
+    extract 6 2
+    bytec_3 // 0x007d
+    swap
+    concat
+    uncover 8
+    concat
+    uncover 7
+    concat
+    uncover 6
+    concat
+    uncover 5
+    concat
+    dig 8
+    concat
+    uncover 4
+    concat
+    uncover 3
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    bytec 4 // 0x0000000000000000
+    concat
+    uncover 2
+    concat
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:257
+    // this.markets(marketId).value = updated.copy();
+    dig 3
+    box_del
+    pop
+    uncover 3
+    swap
+    box_put
+    // smart_contracts/percival_sc/contract.algo.ts:259
+    // itxn.payment({ amount: amt, receiver: m.creator.bytes, fee: 0 }).submit();
+    itxn_begin
+    itxn_field Amount
+    itxn_field Receiver
+    intc_1 // 1
+    itxn_field TypeEnum
+    intc_0 // 0
+    itxn_field Fee
+    itxn_submit
+    // smart_contracts/percival_sc/contract.algo.ts:260
+    // return true;
+    intc_1 // 1
+    retsub
+
+
+// smart_contracts/percival_sc/contract.algo.ts::PercivalSc.getMarket(marketId: uint64) -> bytes:
+getMarket:
+    // smart_contracts/percival_sc/contract.algo.ts:266-267
+    // @abimethod({ readonly: true })
+    // public getMarket(marketId: uint64): MarketStruct {
+    proto 1 1
+    // smart_contracts/percival_sc/contract.algo.ts:268
+    // assert(this.markets(marketId).exists, "market not found");
+    frame_dig -1
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:60
+    // public markets = BoxMap<uint64, MarketStruct>({ keyPrefix: "markets" });
+    bytec_2 // "markets"
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:268
+    // assert(this.markets(marketId).exists, "market not found");
+    dup
+    box_len
+    bury 1
+    assert // market not found
+    // smart_contracts/percival_sc/contract.algo.ts:269
+    // return this.markets(marketId).value;
+    box_get
+    assert // Box must have value
+    retsub
+
+
+// smart_contracts/percival_sc/contract.algo.ts::PercivalSc.getBet(betId: uint64) -> bytes:
+getBet:
+    // smart_contracts/percival_sc/contract.algo.ts:275-276
+    // @abimethod({ readonly: true })
+    // public getBet(betId: uint64): BetStruct {
+    proto 1 1
+    // smart_contracts/percival_sc/contract.algo.ts:277
+    // assert(this.bets(betId).exists, "bet not found");
+    frame_dig -1
+    itob
+    // smart_contracts/percival_sc/contract.algo.ts:61
+    // public bets = BoxMap<uint64, BetStruct>({ keyPrefix: "bets" });
+    bytec 5 // "bets"
+    swap
+    concat
+    // smart_contracts/percival_sc/contract.algo.ts:277
+    // assert(this.bets(betId).exists, "bet not found");
+    dup
+    box_len
+    bury 1
+    assert // bet not found
+    // smart_contracts/percival_sc/contract.algo.ts:278
+    // return this.bets(betId).value;
+    box_get
+    assert // Box must have value
+    retsub
